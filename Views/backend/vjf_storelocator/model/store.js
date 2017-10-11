@@ -3,7 +3,8 @@ Ext.define('Shopware.apps.VjfStorelocator.model.Store', {
 
     configure: function() {
         return {
-            controller: 'VjfStorelocator'
+            controller: 'VjfStorelocator',
+            detail: 'Shopware.apps.VjfStorelocator.view.detail.Store'
         };
     },
 

@@ -13,6 +13,18 @@ use VjfStorelocator\Models\Store\Store;
 use VjfStorelocator\Models\Store\StoreRank;
 
 class VjfStorelocator extends Plugin {
+
+  public static function getSubscribedEvents()
+  {
+    return [
+      'Enlight_Controller_Dispatcher_ControllerPath_Backend_VjfStorelocator' => 'getBackendController',
+      'Enlight_Controller_Dispatcher_ControllerPath_Frontend_VjfStorelocator' => 'getFrontendController',
+      'Theme_Compiler_Collect_Plugin_Css' => 'addCssFiles',
+      'Theme_Compiler_Collect_Plugin_Less' => 'addLessFiles',
+      'Theme_Compiler_Collect_Plugin_Javascript' => 'addJsFiles',
+    ];
+  }
+
   public function getBackendController(\Enlight_Event_EventArgs $args)
   {
     Shopware()->Template()->addTemplateDir($this->getPath().'/Views');
@@ -49,17 +61,6 @@ class VjfStorelocator extends Plugin {
         $this->getPath() . '/Views/frontend/_public/src/js/jlocator/jlocator.min.js',
       ];
       return new ArrayCollection($jsFiles);
-  }
-
-  public static function getSubscribedEvents()
-  {
-      return [
-          'Enlight_Controller_Dispatcher_ControllerPath_Backend_VjfStorelocator' => 'getBackendController',
-          'Enlight_Controller_Dispatcher_ControllerPath_Frontend_VjfStorelocator' => 'getFrontendController',
-          'Theme_Compiler_Collect_Plugin_Css' => 'addCssFiles',
-          'Theme_Compiler_Collect_Plugin_Less' => 'addLessFiles',
-          'Theme_Compiler_Collect_Plugin_Javascript' => 'addJsFiles',
-      ];
   }
 
   public function afterInit()

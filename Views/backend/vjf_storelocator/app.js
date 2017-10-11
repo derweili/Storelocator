@@ -10,7 +10,9 @@ Ext.define('Shopware.apps.VjfStorelocator', {
 
     views: [
       'list.Window',
-      'list.Store'
+      'list.Store',
+      'detail.Window',
+      'detail.Store'
     ],
 
     models: [ 'Store' ],
