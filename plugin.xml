@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">Store Locator</label>
+    <label lang="en">Store Locator</label>
+    <version>1.0.5</version>
+    <copyright>Daniel Rexin</copyright>
+    <license>MIT</license>
+    <link>https://jungfeld.com</link>
+    <author>von Jungfeld</author>
+</plugin>
