@@ -12,6 +12,11 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use VjfStorelocator\Models\Store\Store;
 use VjfStorelocator\Models\Store\StoreRank;
 
+
+use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Events;
+
 class VjfStorelocator extends Plugin {
 
   public static function getSubscribedEvents()
@@ -22,6 +27,9 @@ class VjfStorelocator extends Plugin {
       'Theme_Compiler_Collect_Plugin_Css' => 'addCssFiles',
       'Theme_Compiler_Collect_Plugin_Less' => 'addLessFiles',
       'Theme_Compiler_Collect_Plugin_Javascript' => 'addJsFiles',
+      'VjfStorelocator\Models\Store\Store::prePersist' => 'prePersistStore',
+      'VjfStorelocator\Models\Store\Store::preUpdate' => 'prePersistStore',
+
     ];
   }
 
@@ -124,4 +132,18 @@ class VjfStorelocator extends Plugin {
           'label' => 'Italic'
       ));
   }
+
+  public function prePersistStore(\Enlight_Event_EventArgs $args){
+    $entity = $args->get('entityManager');
+  //  $entity->setCity('test');
+    // $entityManager = $args->get('entityManager');
+    // $args->setNewValue('name', 'Bob');
+    // $args->setNewValue('city', 'cityname');
+    //error_log($entity->getCity());
+    //$entity->setCity('name');
+    $args->setNewValue('city', 'heidelberg');
+    error_log('test');
+    $args->getEntityManager()->getConnection()->insert('city', 'Heidelberg');
+  }
+
 }
