@@ -11,6 +11,7 @@ use Shopware\Components\Theme\LessDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use VjfStorelocator\Models\Store\Store;
 use VjfStorelocator\Models\Store\StoreRank;
+use VjfStorelocator\Component\GeoCoordinates\GeoCoordinates;
 
 
 use Doctrine\Common\EventSubscriber;
@@ -27,6 +28,7 @@ class VjfStorelocator extends Plugin {
       'Theme_Compiler_Collect_Plugin_Css' => 'addCssFiles',
       'Theme_Compiler_Collect_Plugin_Less' => 'addLessFiles',
       'Theme_Compiler_Collect_Plugin_Javascript' => 'addJsFiles',
+      'Enlight_Bootstrap_InitResource_VjfStorelocator_GeoCoordinates' => 'onInitGeoCoordinates',
       'VjfStorelocator\Models\Store\Store::prePersist' => 'prePersistStore',
       'VjfStorelocator\Models\Store\Store::preUpdate' => 'prePersistStore',
 
@@ -141,9 +143,17 @@ class VjfStorelocator extends Plugin {
     // $args->setNewValue('city', 'cityname');
     //error_log($entity->getCity());
     //$entity->setCity('name');
-    $args->setNewValue('city', 'heidelberg');
+    //$args->setNewValue('city', 'heidelberg');
     error_log('test');
-    $args->getEntityManager()->getConnection()->insert('city', 'Heidelberg');
+    $service = Shopware()->Container()->get('VjfStorelocator_GeoCoordinates');
+    $coordinates = $service->getCoordinates('Mannheim');
+    error_log(print_r($coordinates, true));
+    //$args->getEntityManager()->getConnection()->insert('city', 'Heidelberg');
+  }
+
+
+  public function onInitGeoCoordinates(){
+    return new \VjfStorelocator\Component\GeoCoordinates\GeoCoordinates();
   }
 
 }
