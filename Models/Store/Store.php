@@ -203,7 +203,7 @@ class Store extends ModelEntity {
    */
   public function getLatitude()
   {
-      return $this->city;
+      return $this->latitude;
   }
 
   /**
@@ -211,7 +211,23 @@ class Store extends ModelEntity {
    */
   public function setLatitude($latitude)
   {
-      $this->country = $this->city;
+      $this->latitude = $latitude;
+  }
+
+  /**
+   * @return string
+   */
+  public function getLongitude()
+  {
+      return $this->longitude;
+  }
+
+  /**
+   * @param string $latitude
+   */
+  public function setLongitude($longitude)
+  {
+      $this->longitude = $longitude;
   }
 
 }
