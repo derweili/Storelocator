@@ -136,7 +136,7 @@ class VjfStorelocator extends Plugin {
   }
 
   public function prePersistStore(\Enlight_Event_EventArgs $args){
-    $entity = $args->get('entityManager');
+    $entity = $args->get('entity');
   //  $entity->setCity('test');
     // $entityManager = $args->get('entityManager');
     // $args->setNewValue('name', 'Bob');
@@ -144,10 +144,10 @@ class VjfStorelocator extends Plugin {
     //error_log($entity->getCity());
     //$entity->setCity('name');
     //$args->setNewValue('city', 'heidelberg');
-    error_log('test');
+    // error_log('test');
     $service = Shopware()->Container()->get('VjfStorelocator_GeoCoordinates');
     $coordinates = $service->getCoordinates('Mannheim');
-    error_log(print_r($coordinates, true));
+    // error_log(print_r($coordinates, true));
     //$args->getEntityManager()->getConnection()->insert('city', 'Heidelberg');
   }
 
